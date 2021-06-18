@@ -42,7 +42,7 @@ function setup() {
 	groundObject=new ground(width/2,600,width,20);
   //create launcherObject here
 
-  launcherObject=new launcher(stoneObj.body,{x:235,y:420})
+  launcherObject=new Launcher(stoneObj.body,{x:235,y:420})
 
 
 	Engine.run(engine);
@@ -93,23 +93,23 @@ function draw() {
 }
 
 //create mouseDragged function here
-function mouseDragged(){
-  Matter.Body.setPosition(stone.body,{x:mouseX,y:mouseY});
+function mouseDragged()
+{
+	Matter.Body.setPosition(stoneObj.body, {x:mouseX, y:mouseY}) 
 }
 
-//create mouseReleased function here
-function mouseReleased(){
-  attach.fly();
+function mouseReleased()
+{
+	launcherObject.fly();
+    // distance=int(dist(stoneObj.x,stoneObj.y,mango1.x,mango1.y));
 }
 
-//create keyPressed function here
-function keyPressed(){
-  if(keycode===SPACE_ARROW){
-    Matter.Body.setPosition(stoneObj.body,{x:235,y:420});
-    launcherObject.attach(stoneObj.body);
+function keyPressed() {
+	if (keyCode === 32) {
+    Matter.Body.setPosition(stoneObj.body, {x:235, y:420}) 
+	  launcherObject.attach(stoneObj.body);
+	}
   }
-}
-
 
   function detectollision(lstone,lmango){
 
@@ -117,9 +117,10 @@ function keyPressed(){
   stoneBodyPosition=lstone.body.position
   
   var distance=dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y)
+  
   	if(distance<=lmango.r+lstone.r)
     {
+      
   	  Matter.Body.setStatic(lmango.body,false);
-    }
-
+    } 
   }
